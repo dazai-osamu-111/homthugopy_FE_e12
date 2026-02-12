@@ -21,6 +21,7 @@ export default function TrackingPage() {
       // Gọi API tra cứu đã khớp với context-path /api
       const res = await axios.get<Feedback>(`http://localhost:8080/api/feedback/track/${code}`);
       setResult(res.data);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (err: any) {
       if (err.response?.status === 404) {
         setError("Không tìm thấy mã tra cứu này. Vui lòng kiểm tra lại.");
@@ -68,7 +69,7 @@ export default function TrackingPage() {
             <div className="bg-slate-50 p-4 rounded-lg">
               <p className="text-xs text-slate-400 uppercase font-bold mb-1">Nội dung góp ý của bạn:</p>
               <h3 className="font-bold text-slate-800 mb-2">{result.title}</h3>
-              <p className="text-slate-600 italic">"{result.content}"</p>
+              <p className="text-slate-600 italic">&quot;{result.content}&quot;</p>
             </div>
 
             {result.adminResponse ? (
